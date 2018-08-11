@@ -190,6 +190,5 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 let g:ftplugin_sql_omni_key = '<C-j>'
 colorscheme monokain
 
-
 "Github autosync after .vimrc modified
 autocmd BufWritePost * if @% == '.vimrc' | execute '!git commit % -m improvement; git push origin master' | endif
