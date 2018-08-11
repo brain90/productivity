@@ -9,3 +9,5 @@ Table of contents
 * Several killer macros
 * Bash Shortcut Collection
 * Git alias
+* Tmux Custom
+* Bash Aliases
