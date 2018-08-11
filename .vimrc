@@ -19,6 +19,7 @@ inoremap <C-s> <esc>:update<cr> " save files
 inoremap <C-q> <esc>:q!<cr>     " quit per tab discarding changes
 inoremap <C-z> <esc>:qa!<cr>    " quit vim discarding changes
 nnoremap <C-s> :w<cr>
+inoremap <C-s> :w<cr>
 nnoremap <C-q> :q!<cr>
 nnoremap <C-z> :qa!<cr>
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -188,3 +189,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 
 let g:ftplugin_sql_omni_key = '<C-j>'
 colorscheme monokain
+
+
+"Github autosync after .vimrc modified
+autocmd BufWritePost * if @% == '.vimrc' | execute '!git commit % -m improvement; git push origin master' | endif
