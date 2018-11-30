@@ -9,17 +9,18 @@ noremap <space> :
 set nu                                     " line number
 set ls=2                                   " always show file name on status bar
 set nohlsearch
+let mapleader=","
+nnoremap <leader>t :Tabularize /:<CR>
+nnoremap <leader>f gg=G<CR>
 "set cursorline
-"au VimEnter *  NERDTree
 
 " standard convenient ide
 
-tnoremap <Esc> <C-\><C-n>       " neovim terminal escape
 inoremap <C-s> <esc>:update<cr> " save files
 inoremap <C-q> <esc>:q!<cr>     " quit per tab discarding changes
 inoremap <C-z> <esc>:qa!<cr>    " quit vim discarding changes
 nnoremap <C-s> :w<cr>
-inoremap <C-s> :w<cr>
+inoremap <C-s> <esc>:w<cr>
 nnoremap <C-q> :q!<cr>
 nnoremap <C-z> :qa!<cr>
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -35,10 +36,8 @@ nnoremap <C-t>     :tabnew<cr>
 inoremap <C-S-tab> <esc>:tabprevious<cr>i                                     
 inoremap <C-tab>   <esc>:tabnext<cr>i                                     
 inoremap <C-t>     <esc>:tabnew<cr>         
-nnoremap <C-h> <C-w>h                           " easy windows navigation         
-nnoremap <C-j> <C-w>j                          
-nnoremap <C-k> <C-w>k                          
-nnoremap <C-l> <C-w>l                          
+nnoremap <C-h> <C-w><C-h>                           " easy windows navigation         
+nnoremap <C-l> <C-w><C-l>                         
 
 
 "highlight ColorColumn ctermbg=magenta      " 80 column border
@@ -60,7 +59,6 @@ set showmode
 set gdefault                               " auto global flag in search/replace
 set ignorecase                             " case insensitive search
 set autoread                               " auto reload changes outside vim
-let mapleader=","
 let maplocalleader="\\"
 "set clipboard=unnamed
 
@@ -80,6 +78,8 @@ let @v=':2d/SELECT:1yyp:1idrop :2icreate :1vj:s/"//:1vj:s/$/;/:2:s/;
 let @q="^i'$a',"
 vnoremap <leader>q :'<,'> norm! @q<CR>
 
+" Wilblokno
+"let @wbn=":%s/ \+//€kb /:%s/|/= %s/\€kb=/€kb / €kb= ':1,2s/$/',€kl and€kb€kr€kbd"
 
 "--- PLUGIN CONFIG ---"
 
@@ -150,11 +150,13 @@ Plugin 'vitalk/vim-simple-todo'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'enricobacis/vim-airline-clock'
+"Plugin 'enricobacis/vim-airline-clock'
 Plugin 'aquach/vim-mediawiki-editor'
+Plugin 'sk1418/HowMuch'
 "Plugin 'krisajenkins/vim-pipe'
 Plugin 'krisajenkins/vim-postgresql-syntax'
-Plugin 'martingms/vipsql'
+"Plugin 'vim-scripts/dbext.vim'
+"Plugin 'martingms/vipsql'
 
 
 "Plugin 'tmhedberg/SimpylFold'
@@ -168,7 +170,7 @@ let tlist_php_settings='php;f:function'
 "let php_folding = 1        "Set PHP folding of classes and functions.
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
-let php_noShortTags = 1    "Disable PHP short tags.
+let php_noShortTags = 0    "Disable PHP short tags.
 highlight Folded ctermbg=none
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 
@@ -187,8 +189,13 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 "inoremap <F9> :!python %<cr>
 "inoremap <F12> sys.exit()
 
-let g:ftplugin_sql_omni_key = '<C-j>'
 colorscheme monokain
+let g:ftplugin_sql_omni_key = '<C-j>'
 
-"Github autosync after .vimrc modified
-autocmd BufWritePost * if @% == '.vimrc' | execute '!git commit % -m improvement; git push origin master' | endif
+""autosync after .vimrc modified
+autocmd BufWritePost * if @% =~ '.vimrc' | execute '!/home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
+syntax on
+au FileType sql set equalprg=pg_format
+silent! tnoremap <Esc> <C-\><C-n>
+"set relativenumber
+set clipboard=unnamedplus
