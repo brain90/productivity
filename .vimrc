@@ -12,6 +12,7 @@ set nohlsearch
 let mapleader=","
 nnoremap <leader>t :Tabularize /:<CR>
 nnoremap <leader>f gg=G<CR>
+set splitright
 "set cursorline
 
 " standard convenient ide
