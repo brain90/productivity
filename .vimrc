@@ -183,4 +183,4 @@ set clipboard=unnamedplus
 "postgres sql formatter.
 "call it with ,f
 au FileType sql set equalprg=pg_format
-au VimEnter * wincmd l
+au VimEnter * <C-h>
