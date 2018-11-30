@@ -129,14 +129,10 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " -- VUNDLE PACKAGE MANAGER --
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+call vundle#begin()
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -150,21 +146,18 @@ Plugin 'vitalk/vim-simple-todo'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'flazz/vim-colorschemes'
-"Plugin 'enricobacis/vim-airline-clock'
 Plugin 'aquach/vim-mediawiki-editor'
 Plugin 'sk1418/HowMuch'
-"Plugin 'krisajenkins/vim-pipe'
 Plugin 'krisajenkins/vim-postgresql-syntax'
+"Plugin 'enricobacis/vim-airline-clock'
 "Plugin 'vim-scripts/dbext.vim'
 "Plugin 'martingms/vipsql'
-
-
 "Plugin 'tmhedberg/SimpylFold'
 "Plugin 'Valloric/MatchTagAlways'
 "Plugin 'maksimr/vim-jsbeautify'
+"Plugin 'krisajenkins/vim-pipe'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call vundle#end()
 
 let tlist_php_settings='php;f:function' 
 "let php_folding = 1        "Set PHP folding of classes and functions.
