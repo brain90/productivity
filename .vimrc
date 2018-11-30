@@ -174,17 +174,6 @@ let php_noShortTags = 0    "Disable PHP short tags.
 highlight Folded ctermbg=none
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 
-"function! ClipboardYank()
-"  call system('xclip -i -selection clipboard', @@)
-"endfunction
-"function! ClipboardPaste()
-"  let @@ = system('xclip -o -selection clipboard')
-"endfunction
-"
-"vnoremap <silent> y y:call ClipboardYank()<cr>
-"vnoremap <silent> d d:call ClipboardYank()<cr>
-"nnoremap <silent> p :call ClipboardPaste()<cr>p
-
 "nnoremap <F9> :!python %<cr>
 "inoremap <F9> :!python %<cr>
 "inoremap <F12> sys.exit()
