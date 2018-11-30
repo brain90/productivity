@@ -15,7 +15,6 @@ nnoremap <leader>f gg=G<CR>
 "set cursorline
 
 " standard convenient ide
-
 inoremap <C-s> <esc>:update<cr> " save files
 inoremap <C-q> <esc>:q!<cr>     " quit per tab discarding changes
 inoremap <C-z> <esc>:qa!<cr>    " quit vim discarding changes
@@ -26,7 +25,6 @@ nnoremap <C-z> :qa!<cr>
 nnoremap <silent> <F8> :TlistToggle<CR>
 
 " window management
-
 nnoremap <C-e> :NERDTreeToggle<cr>                       " project folder
 nnoremap <C-S-tab> :tabprevious<cr>                      " move to previous tab
 nnoremap <C-tab>   :tabnext<cr>                          " move to next tab
@@ -175,7 +173,7 @@ colorscheme monokain
 let g:ftplugin_sql_omni_key = '<C-j>'
 
 ""autosync after .vimrc modified
-autocmd BufWritePost * if @% =~ '.vimrc' | execute '!/home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
+autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
 syntax on
 au FileType sql set equalprg=pg_format
 silent! tnoremap <Esc> <C-\><C-n>
