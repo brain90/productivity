@@ -29,7 +29,6 @@ nnoremap <C-e> :NERDTreeToggle<cr>                       " project folder
 nnoremap <C-S-tab> :tabprevious<cr>                      " move to previous tab
 nnoremap <C-tab>   :tabnext<cr>                          " move to next tab
 nnoremap <C-t>     :tabnew<cr>
-"nnoremap <C-t>     :tabnew<cr>:NERDTree<cr>:wincmd p<cr> " create new tab, autoOpen explorer
 
 inoremap <C-S-tab> <esc>:tabprevious<cr>i                                     
 inoremap <C-tab>   <esc>:tabnext<cr>i                                     
@@ -175,7 +174,11 @@ let g:ftplugin_sql_omni_key = '<C-j>'
 ""autosync after .vimrc modified
 autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
 syntax on
-au FileType sql set equalprg=pg_format
 silent! tnoremap <Esc> <C-\><C-n>
 "set relativenumber
 set clipboard=unnamedplus
+
+
+"postgres sql formatter.
+"call it with ,f
+au FileType sql set equalprg=pg_format
