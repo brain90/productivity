@@ -170,7 +170,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 "inoremap <F12> sys.exit()
 
 colorscheme monokain
-let g:ftplugin_sql_omni_key = '<C-j>'
+"let g:ftplugin_sql_omni_key = '<C-j>'
 
 ""autosync after .vimrc modified
 autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
