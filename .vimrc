@@ -158,7 +158,7 @@ Plugin 'krisajenkins/vim-postgresql-syntax'
 call vundle#end()
 
 let tlist_php_settings='php;f:function' 
-let php_folding = 1        "Set PHP folding of classes and functions.
+let php_folding = 0        "Set PHP folding of classes and functions.
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
 let php_noShortTags = 0    "Disable PHP short tags.
@@ -173,7 +173,7 @@ colorscheme monokain
 let g:ftplugin_sql_omni_key = '<C-j>'
 
 ""autosync after .vimrc modified
-"autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
+autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
 syntax on
 silent! tnoremap <Esc> <C-\><C-n>
 "set relativenumber
@@ -183,4 +183,4 @@ set clipboard=unnamedplus
 "postgres sql formatter.
 "call it with ,f
 au FileType sql set equalprg=pg_format
-au VimEnter * <C-h>
+"au VimEnter * <C-h>
