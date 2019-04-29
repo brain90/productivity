@@ -13,6 +13,7 @@ set splitright
 set nu       
 set ls=2 " always show file name on status bar
 set nohlsearch
+set showcmd
 let mapleader=","
 nnoremap <leader>t :Tabularize /:<CR>
 nnoremap <leader>f gg=G<CR>
