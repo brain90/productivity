@@ -85,8 +85,6 @@ vnoremap <leader>q :'<,'> norm! @q<CR>
 " Wilblokno
 "let @wbn=":%s/ \+//€kb /:%s/|/= %s/\€kb=/€kb / €kb= ':1,2s/$/',€kl and€kb€kr€kbd"
 
-" PLUGIN CONFIG "
-
 " make ctrl + p run faster
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden                                   
       \ --ignore .git                                   
