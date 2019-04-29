@@ -13,7 +13,7 @@ set splitright
 set nu       
 set ls=2 " always show file name on status bar
 set nohlsearch
-set showcmd
+set wildmenu
 let mapleader=","
 nnoremap <leader>t :Tabularize /:<CR>
 nnoremap <leader>f gg=G<CR>
@@ -27,6 +27,10 @@ inoremap <C-s> <esc>:w<cr>
 nnoremap <C-q> :q!<cr>
 nnoremap <C-z> :qa!<cr>
 nnoremap <silent> <F8> :TlistToggle<CR>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 " WINDOW MANAGEMENT
 nnoremap <C-h> <C-w><C-h>            " easy windows navigation
@@ -42,8 +46,6 @@ inoremap <C-tab>   <esc>:tabnext<cr>i
 inoremap <C-t>     <esc>:tabnew<cr>         
 
 " COMMON
-colorscheme monokain
-syntax on
 silent! tnoremap <Esc> <C-\><C-n>
 set clipboard=unnamedplus
 
@@ -128,11 +130,9 @@ let Tlist_Sort_Type = "name"
 let Tlist_Enable_Fold_Column = 0
 filetype off                  " required
 
-" VUNDLE PACKAGE MANAGER
+" PACKAGE MANAGER ------------------------ {{{
 set rtp+=~/.vim/bundle/Vundle.vim
-
 call vundle#begin()
-
   Plugin 'VundleVim/Vundle.vim'
   Plugin 'kien/ctrlp.vim'
   Plugin 'scrooloose/nerdtree'
@@ -144,6 +144,8 @@ call vundle#begin()
   Plugin 'flazz/vim-colorschemes'
   Plugin 'krisajenkins/vim-postgresql-syntax'
   Plugin 'chikamichi/mediawiki.vim'
+  Plugin 'rking/ag.vim'
+  "Plugin 'sjl/gundo.vim'
   "Plugin 'scrooloose/nerdcommenter'
   "Plugin 'dkprice/vim-easygrep'
   "Plugin 'mattn/emmet-vim'
@@ -158,8 +160,14 @@ call vundle#begin()
   "Plugin 'maksimr/vim-jsbeautify'
   "Plugin 'krisajenkins/vim-pipe'
   "Plugin 'lifepillar/pgsql.vim'
-
 call vundle#end()
+" }}}
+
+" load scheme from vundle
+syntax on
+colorscheme monokain
+nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>a :Ag 
 
 " PROGRAMMING LANGUAGE 
 let tlist_php_settings='php;f:function' 
@@ -170,6 +178,25 @@ let php_noShortTags = 0    "Disable PHP short tags.
 highlight Folded ctermbg=none
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 
+" SESSION
+
+" save session
+nnoremap <leader>s :mksession<CR>
+
+" BACKUP
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
+
+set modelines=1
+
+" Searching
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+nnoremap <leader><space> :nohlsearch<CR>
+
 "nnoremap <F9> :!python %<cr>
 "inoremap <F9> :!python %<cr>
 "inoremap <F12> sys.exit()
@@ -177,4 +204,6 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
 "let g:ftplugin_sql_omni_key = '<C-j>'
 
 ""autosync after .vimrc modified
-"autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
+autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
+
+" vim:foldmethod=marker:foldlevel=0
