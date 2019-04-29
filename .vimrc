@@ -5,7 +5,7 @@
 " BASIC EDITOR
 
 " jump to command mode in only one keystroke
-noremap <space> : 
+noremap <space> :
 
 set rtp+=~/.vim
 set autoread
