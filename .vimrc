@@ -143,6 +143,7 @@ call vundle#begin()
   Plugin 'krisajenkins/vim-postgresql-syntax'
   Plugin 'chikamichi/mediawiki.vim'
   Plugin 'rking/ag.vim'
+  "Plugin 'Valloric/YouCompleteMe'
   "Plugin 'sjl/gundo.vim'
   "Plugin 'scrooloose/nerdcommenter'
   "Plugin 'dkprice/vim-easygrep'
@@ -202,7 +203,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 "let g:ftplugin_sql_omni_key = '<C-j>'
 
 ""autosync after .vimrc modified
-"autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
+autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
 " vim:foldmethod=marker:foldlevel=0
 
 
@@ -218,3 +219,6 @@ imap <right> <nop>
 
 " Disable anoying ex mode
 nnoremap Q <Nop>
+
+" doesn't display the mode status
+set noshowmode
