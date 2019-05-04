@@ -202,6 +202,19 @@ nnoremap <leader><space> :nohlsearch<CR>
 "let g:ftplugin_sql_omni_key = '<C-j>'
 
 ""autosync after .vimrc modified
-"autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
-
+autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
 " vim:foldmethod=marker:foldlevel=0
+
+
+" arrow keys resize windows
+nnoremap <Left> :vertical resize +10<CR>
+nnoremap <Right> :vertical resize -10<CR>
+nnoremap <Up> :resize +10<CR>
+nnoremap <Down> :resize -10<CR>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Disable anoying ex mode
+nnoremap Q <Nop>
