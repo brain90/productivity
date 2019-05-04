@@ -201,10 +201,7 @@ set incsearch           " search as characters are entered
 "let g:ftplugin_sql_omni_key = '<C-j>'
 
 ""autosync after .vimrc modified
-autocmd BufWritePost * if @% =~ '.vimrc' | execute '
-        \!cd /home/brain/Documents/Projects/productivity; 
-        \git commit .vimrc -m improvement; 
-        \git push origin master' | endif
+autocmd BufWritePost * if @% =~ '.vimrc' | execute '!cd /home/brain/Documents/Projects/productivity; git commit .vimrc -m improvement; git push origin master' | endif
 " vim:foldmethod=marker:foldlevel=0
 
 
