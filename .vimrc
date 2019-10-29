@@ -26,7 +26,9 @@ nnoremap <C-s> :w<cr>
 inoremap <C-s> <esc>:w<cr>
 nnoremap <C-q> :q!<cr>
 nnoremap <C-z> :qa!<cr>
-nnoremap <silent> <F8> :TlistToggle<CR>
+nnoremap <silent> <F8> :TlistToggle<cr>
+inoremap <C-a> <esc>:%y<cr>
+nnoremap <C-a> :%y<cr>
 
 " move vertically by visual line
 nnoremap j gj
@@ -38,12 +40,21 @@ nnoremap <C-l> <C-w><C-l>
 nnoremap <C-e> :NERDTreeToggle<cr>   " project folder
 
 " ONLY WORKS IN GVIM 
-nnoremap <C-S-tab> :tabprevious<cr>  " move to previous tab
-nnoremap <C-tab>   :tabnext<cr>      " move to next tab
-nnoremap <C-t>     :tabnew<cr>
-inoremap <C-S-tab> <esc>:tabprevious<cr>i                                     
-inoremap <C-tab>   <esc>:tabnext<cr>i                                     
-inoremap <C-t>     <esc>:tabnew<cr>         
+"nnoremap <C-S-tab> :tabprevious<cr>  " move to previous tab
+"nnoremap <C-tab>   :tabnext<cr>      " move to next tab
+"nnoremap <C-t>     :tabnew<cr>
+"inoremap <C-S-tab> <esc>:tabprevious<cr>i                                     
+"inoremap <C-tab>   <esc>:tabnext<cr>i                                     
+"inoremap <C-t>     <esc>:tabnew<cr>         
+
+" CTRL-Tab is next tab
+"noremap <C-Tab> :<C-U>tabnext<CR>
+"inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
+"cnoremap <C-Tab> <C-C>:tabnext<CR>
+"" " CTRL-SHIFT-Tab is previous tab
+"noremap <C-S-Tab> :<C-U>tabprevious<CR>
+"inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
+"cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
 
 " COMMON
 silent! tnoremap <Esc> <C-\><C-n>
@@ -54,6 +65,8 @@ set backspace=indent,eol,start
 set showmatch                              " set show matching parenthesis
 set nocp
 set history=1000                           " remember more commands and search history
+set undofile " Maintain undo history between sessions
+set undodir=~/.vim/undodir
 set undolevels=1000                        " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                                  " change the terminal's title
@@ -76,14 +89,14 @@ filetype plugin indent on
 " MACRO "
 
 " PostgresEditView
-let @v=':2d/SELECT:1yyp:1idrop :2icreate :1vj:s/"//:1vj:s/$/;/:2:s/;/ AS/g'
+let @v=':2d/SELECT :1 yyp:1 idrop :2 icreate :1 vj:s/"// :1 vj:s/$/;/ :2 :s/;/ AS/g' 
 
 " Powerfull array maker
 let @q="^i'$a',"
 vnoremap <leader>q :'<,'> norm! @q<CR>
 
 " Wilblokno
-"let @wbn=":%s/ \+//€kb /:%s/|/= %s/\€kb=/€kb / €kb= ':1,2s/$/',€kl and€kb€kr€kbd"
+"let @wbn=":%s/ \+//€kb / :%s/|/= %s/\€kb=/€kb / €kb= ' :1,2s/$/',€kl and€kb€kr€kbd"
 
 " make ctrl + p run faster
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden                                   
@@ -128,54 +141,62 @@ let Tlist_Sort_Type = "name"
 let Tlist_Enable_Fold_Column = 0
 filetype off                  " required
 
-" PACKAGE MANAGER ------------------------ {{{
+" PLUGIN MANAGER ------------------------ {{{
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-  Plugin 'VundleVim/Vundle.vim'
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'godlygeek/tabular'
-  Plugin 'edsono/vim-matchit'
-  Plugin 'vim-scripts/taglist.vim'
-  Plugin 'bling/vim-airline'
-  Plugin 'vitalk/vim-simple-todo'
-  Plugin 'flazz/vim-colorschemes'
-  Plugin 'krisajenkins/vim-postgresql-syntax'
-  Plugin 'chikamichi/mediawiki.vim'
-  Plugin 'rking/ag.vim'
-  "Plugin 'Valloric/YouCompleteMe'
-  "Plugin 'sjl/gundo.vim'
-  "Plugin 'scrooloose/nerdcommenter'
-  "Plugin 'dkprice/vim-easygrep'
-  "Plugin 'mattn/emmet-vim'
-  "Plugin 'tpope/vim-surround'
-  "Plugin 'aquach/vim-mediawiki-editor'
-  "Plugin 'sk1418/HowMuch'
-  "Plugin 'enricobacis/vim-airline-clock'
-  "Plugin 'vim-scripts/dbext.vim'
-  "Plugin 'martingms/vipsql'
-  "Plugin 'tmhedberg/SimpylFold'
-  "Plugin 'Valloric/MatchTagAlways'
-  "Plugin 'maksimr/vim-jsbeautify'
-  "Plugin 'krisajenkins/vim-pipe'
-  "Plugin 'lifepillar/pgsql.vim'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'godlygeek/tabular'
+Plugin 'edsono/vim-matchit'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'bling/vim-airline'
+Plugin 'vitalk/vim-simple-todo'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'krisajenkins/vim-postgresql-syntax'
+"Plugin 'chikamichi/mediawiki.vim'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+"Plugin 'swekaj/php-foldexpr.vim'
+Plugin 'captbaritone/better-indent-support-for-php-with-html'
+Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'beanworks/vim-phpfmt'
+"Plugin 'stephpy/vim-php-cs-fixer'
+"Plugin 'autozimu/LanguageClient-neovim'
+"Plugin 'Shougo/deoplete.nvim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'sjl/gundo.vim'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'dkprice/vim-easygrep'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'aquach/vim-mediawiki-editor'
+"Plugin 'sk1418/HowMuch'
+"Plugin 'enricobacis/vim-airline-clock'
+"Plugin 'vim-scripts/dbext.vim'
+"Plugin 'martingms/vipsql'
+"Plugin 'tmhedberg/SimpylFold'
+"Plugin 'Valloric/MatchTagAlways'
+"Plugin 'maksimr/vim-jsbeautify'
+"Plugin 'krisajenkins/vim-pipe'
+"Plugin 'lifepillar/pgsql.vim'
 call vundle#end()
 " }}}
 
 " load scheme from vundle
 syntax on
 colorscheme monokain
-nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>a :Ag 
 
 " PROGRAMMING LANGUAGE 
-let tlist_php_settings='php;f:function' 
-let php_folding = 0        "Set PHP folding of classes and functions.
-let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
-let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
-let php_noShortTags = 0    "Disable PHP short tags.
-highlight Folded ctermbg=none
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
+" let tlist_php_settings='php;f:function' 
+"let php_folding = 0        "Set PHP folding of classes and functions.
+"let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
+"let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
+"let php_noShortTags = 0    "Disable PHP short tags.
+"highlight Folded ctermbg=none
+"let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php"
+"autocmd BufWritePost *.php execute 'silent !prettier --print-width 100 % --write' | execute 'redraw!'
 
 " SESSION
 
@@ -188,15 +209,14 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
-
 set modelines=1
 
 " Searching
 set incsearch           " search as characters are entered
 
-"nnoremap <F9> :!python %<cr>
-"inoremap <F9> :!python %<cr>
-"inoremap <F12> sys.exit()
+nnoremap <F9> :!python %<cr>
+inoremap <F9> :!python %<cr>
+inoremap <F12> sys.exit()
 
 "let g:ftplugin_sql_omni_key = '<C-j>'
 
@@ -220,3 +240,29 @@ nnoremap Q <Nop>
 
 " doesn't display the mode status
 set noshowmode
+set shortmess=a
+
+au BufNewFile,BufRead *.py set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+" let php_folding = 1        "Set PHP folding of classes and functions.
+" let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
+" let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
+" let php_noShortTags = 1    "Disable PHP short tags.
+
+
+"let phpfold_use              = 1 "Fold groups of use statements in the global scope.
+"let phpfold_group_iftry      = 1 "Fold if/elseif/else and try/catch/finally blocks as a group, rather than each part separate.
+"let phpfold_group_args       = 1 "Group function arguments split across multiple lines into their own fold.
+"let phpfold_group_case       = 1 "Fold case and default blocks inside switches.
+"let phpfold_heredocs         = 1 "Fold HEREDOCs and NOWDOCs.
+"let phpfold_docblocks        = 1 "Fold DocBlocks.
+"let phpfold_doc_with_funcs   = 1 "Fold DocBlocks. Overrides b:phpfold_docblocks.
+"let phpfold_text             = 0 "Enable the custom foldtext option.
+"let phpfold_text_right_lines = 1 "Display the line count on the right instead of the left.
+"let phpfold_text_percent     = 1 "Display the percentage of lines the fold represents.
