@@ -30,6 +30,8 @@ nnoremap <silent> <F8> :TlistToggle<cr>
 inoremap <C-a> <esc>:%y<cr>
 nnoremap <C-a> :%y<cr>
 
+" find & replace
+vnoremap <leader>v :s/\%V
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
@@ -38,14 +40,14 @@ nnoremap k gk
 nnoremap <C-h> <C-w><C-h>            " easy windows navigation
 nnoremap <C-l> <C-w><C-l>                         
 nnoremap <C-e> :NERDTreeToggle<cr>   " project folder
+nnoremap <C-t> :tabnew<cr>
+inoremap <C-t> <esc>:tabnew<cr>         
 
 " ONLY WORKS IN GVIM 
 "nnoremap <C-S-tab> :tabprevious<cr>  " move to previous tab
 "nnoremap <C-tab>   :tabnext<cr>      " move to next tab
-"nnoremap <C-t>     :tabnew<cr>
 "inoremap <C-S-tab> <esc>:tabprevious<cr>i                                     
 "inoremap <C-tab>   <esc>:tabnext<cr>i                                     
-"inoremap <C-t>     <esc>:tabnew<cr>         
 
 " CTRL-Tab is next tab
 "noremap <C-Tab> :<C-U>tabnext<CR>
@@ -91,12 +93,15 @@ filetype plugin indent on
 " PostgresEditView
 let @v=':2d/SELECT :1 yyp:1 idrop :2 icreate :1 vj:s/"// :1 vj:s/$/;/ :2 :s/;/ AS/g' 
 
+" Wilblokno
+let @w="0iwhere wil='f.i' and no='€kDlf.i' and blok='€kD$a';0i"
+
 " Powerfull array maker
 let @q="^i'$a',"
 vnoremap <leader>q :'<,'> norm! @q<CR>
 
-" Wilblokno
-"let @wbn=":%s/ \+//€kb / :%s/|/= %s/\€kb=/€kb / €kb= ' :1,2s/$/',€kl and€kb€kr€kbd"
+" pre code
+let @p="{i<pre>}o</pre>"
 
 " make ctrl + p run faster
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden                                   
@@ -160,7 +165,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 "Plugin 'swekaj/php-foldexpr.vim'
 Plugin 'captbaritone/better-indent-support-for-php-with-html'
-Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'vim-scripts/indentpython.vim'
 "Plugin 'beanworks/vim-phpfmt'
 "Plugin 'stephpy/vim-php-cs-fixer'
 "Plugin 'autozimu/LanguageClient-neovim'
@@ -226,15 +231,15 @@ inoremap <F12> sys.exit()
 
 
 " arrow keys resize windows
-nnoremap <Left> :vertical resize +10<CR>
-nnoremap <Right> :vertical resize -10<CR>
-nnoremap <Up> :resize +10<CR>
-nnoremap <Down> :resize -10<CR>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
+"nnoremap <Left> :vertical resize +10<CR>
+"nnoremap <Right> :vertical resize -10<CR>
+"nnoremap <Up> :resize +10<CR>
+"nnoremap <Down> :resize -10<CR>
+"imap <up> <nop>
+"imap <down> <nop>
+"imap <left> <nop>
+"imap <right> <nop>
+"
 " Disable anoying ex mode
 nnoremap Q <Nop>
 
@@ -242,13 +247,13 @@ nnoremap Q <Nop>
 set noshowmode
 set shortmess=a
 
-au BufNewFile,BufRead *.py set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+"au BufNewFile,BufRead *.py set tabstop=2
+"    \ set softtabstop=2
+"    \ set shiftwidth=2
+"    \ set textwidth=79
+"    \ set expandtab
+"    \ set autoindent
+"    \ set fileformat=unix
 
 " let php_folding = 1        "Set PHP folding of classes and functions.
 " let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
