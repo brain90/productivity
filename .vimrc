@@ -25,7 +25,6 @@ inoremap <C-z> <esc>:qa!<cr>    " quit vim discarding changes
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <esc>:w<cr>
 nnoremap <C-q> :q!<cr>
-nnoremap <C-z> :qa!<cr>
 nnoremap <silent> <F8> :TlistToggle<cr>
 inoremap <C-a> <esc>:%y<cr>
 nnoremap <C-a> :%y<cr>
@@ -73,7 +72,7 @@ set undolevels=1000                        " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                                  " change the terminal's title
 set hidden
-set nobackup                               " drop nasty swaps    
+"set nobackup                               " drop nasty swaps    
 set noswapfile                                   
 set showmode                                    
 set gdefault                               " auto global flag in search/replace
@@ -82,9 +81,9 @@ set autoread                               " auto reload changes outside vim
 let maplocalleader="\\"
 
 " TAB SETTINGS                                  
-set tabstop=2                              " The width of a TAB is set to 4.                                   
-set shiftwidth=2                           " Indents will have a width of 4                                   
-set softtabstop=2                          " Sets the number of columns for a TAB
+set tabstop=4                              " The width of a TAB is set to 4.                                   
+set shiftwidth=4                           " Indents will have a width of 4                                   
+set softtabstop=4                          " Sets the number of columns for a TAB
 set expandtab                              " Expand TABs to spaces                                   
 filetype plugin indent on   
 
@@ -97,7 +96,7 @@ let @v=':2d/SELECT :1 yyp:1 idrop :2 icreate :1 vj:s/"// :1 vj:s/$/;/ :2 :s/;/
 let @w="0iwhere wil='f.i' and no='€kDlf.i' and blok='€kD$a';0i"
 
 " Powerfull array maker
-let @q="^i'$a',"
+let @q="^i'$a',j"
 vnoremap <leader>q :'<,'> norm! @q<CR>
 
 " pre code
@@ -158,13 +157,15 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vitalk/vim-simple-todo'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'krisajenkins/vim-postgresql-syntax'
+"Plugin 'krisajenkins/vim-postgresql-syntax'
 "Plugin 'chikamichi/mediawiki.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 "Plugin 'swekaj/php-foldexpr.vim'
 Plugin 'captbaritone/better-indent-support-for-php-with-html'
+Plugin 'vim-auto-save'
+Plugin 'zah/nim.vim'
 "Plugin 'vim-scripts/indentpython.vim'
 "Plugin 'beanworks/vim-phpfmt'
 "Plugin 'stephpy/vim-php-cs-fixer'
@@ -219,8 +220,8 @@ set modelines=1
 " Searching
 set incsearch           " search as characters are entered
 
-nnoremap <F9> :!python %<cr>
-inoremap <F9> :!python %<cr>
+nnoremap <F5> :!cat in \| python %<cr>
+"inoremap <F9> :!python %<cr>
 inoremap <F12> sys.exit()
 
 "let g:ftplugin_sql_omni_key = '<C-j>'
@@ -271,3 +272,16 @@ set shortmess=a
 "let phpfold_text             = 0 "Enable the custom foldtext option.
 "let phpfold_text_right_lines = 1 "Display the line count on the right instead of the left.
 "let phpfold_text_percent     = 1 "Display the percentage of lines the fold represents.
+
+"auto save
+let g:auto_save = 1  " enable AutoSave on Vim startup
+
+"freedom cursor movement set virtualedit=all %!fold -w 60
+
+set shortmess=a
+
+
+nnoremap <leader>h :split<CR>
+nnoremap <leader>v :vsplit<CR>
+
+"set iskeyword-=_ 

@@ -1,0 +1,46 @@
+#!/bin/bash
+#set -x
+
+# speedup kattis workflow
+# author: brain90
+# 
+# installation
+#  - put this file into your kattis work dir
+#  - create symlink in /usr/local/bin or pick one from $PATH
+#    * cd /usr/local/bin
+#    * ln -s /home/kattis/1 1
+# usage
+#  - cd /home/kattis
+#  - 1 problem-id
+# example
+#  - 1 babybites
+
+temp_dir="ztmp"
+
+if [ $# -eq 0 ]; then
+    echo "usage: ./1 problem-id"
+    exit 1
+fi
+
+echo 'working...'
+
+## gen solver
+cp 0 "$1.py"
+
+## gen input
+rm -rf $temp_dir
+mkdir -p $temp_dir
+wget https://open.kattis.com/problems/$1/file/statement/samples.zip -O $temp_dir/samples.zip
+unzip -o $temp_dir/samples.zip -d $temp_dir
+
+rm -f in 
+
+for f in $temp_dir/*.in;
+do
+  cat $f >> in
+done
+
+rm $temp_dir/* -f
+
+# ready to play
+vim -c "e in | tabe $1.py"
