@@ -7,7 +7,7 @@
 All served within a sec. 
 
 # Installation
-- put this file inside your kattis work dir
+- copy 0 and 1 file into your kattis work dir
 - create symlink in /usr/local/bin or pick one from $PATH
    * cd /usr/local/bin
    * ln -s /home/kattis/1 1
