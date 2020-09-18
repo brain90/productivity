@@ -1,7 +1,7 @@
 # Speedup kattis workflow 
 
 # installation
- - put this file into your kattis work dir
+ - put this file inside your kattis work dir
  - create symlink in /usr/local/bin or pick one from $PATH
    * cd /usr/local/bin
    * ln -s /home/kattis/1 1
