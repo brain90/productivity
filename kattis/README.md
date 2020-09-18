@@ -1,18 +1,21 @@
-# Speedup kattis workflow 
+# Kattis Speed (vim + python)
 
-1 will generate this to you :
+1 will generate this for you
 * a solver template
 * input
 * output
-* result : PASS / FAILED based on diff between your output and problem output
 
-All served within a sec. All you have to do is just focus to write the solution.
+All served within a sec.
 
 # installation
  - put this file inside your kattis work dir
  - create symlink in /usr/local/bin or pick one from $PATH
    * cd /usr/local/bin
    * ln -s /home/kattis/1 1
+ - put this to your vimrc
+ ```
+nnoremap <F5> :! cat in \| python %<cr>
+ ```
 # usage
  - cd /home/kattis
  - 1 problem-id
@@ -20,3 +23,6 @@ All served within a sec. All you have to do is just focus to write the solution.
 # example
  - 1 babybites
 
+1 will download and made babybites input and open vim with two tab (input file + solution template)
+Press F5 to run your solution against the input.
+Enjoy.
