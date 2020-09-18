@@ -15,15 +15,15 @@ All served within a sec.
  ```
 nnoremap <F5> :! cat in \| python %<cr>
  ```
-# usage sample
- - cd /home/kattis
+# Usage 
+ - cd /your/kattis/directories
  - 1 {problem-id}
 
 # Example
 
-```1 babybites```
+```martian@mars:~/kattis% 1 babybites```
 
-1 will download and made babybites input and open vim with two tab (input file + solution template)
+1 will create babybites input and open vim with two tab (input file + solution template)
 
 Press F5 to run your solution against the input.
 
