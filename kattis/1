@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -x
 
-# speedup kattis workflow
+# kattis workflow
 # author: brain90
 # 
 # installation
@@ -12,8 +12,6 @@
 # usage
 #  - cd /home/kattis
 #  - 1 problem-id
-# example
-#  - 1 babybites
 
 temp_dir="ztmp"
 
@@ -24,8 +22,13 @@ fi
 
 echo 'working...'
 
+
 ## gen solver
-cp 0 "$1.py"
+if test -f "$1.py"; then
+    echo "$FILE exists. not touched."
+else
+    cp 0 "$1.py"
+fi
 
 ## gen input
 rm -rf $temp_dir
