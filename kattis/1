@@ -3,20 +3,11 @@
 
 # kattis workflow
 # author: brain90
-# 
-# installation
-#  - put this file into your kattis work dir
-#  - create symlink in /usr/local/bin or pick one from $PATH
-#    * cd /usr/local/bin
-#    * ln -s /home/kattis/1 1
-# usage
-#  - cd /home/kattis
-#  - 1 problem-id
 
 temp_dir="ztmp"
 
 if [ $# -eq 0 ]; then
-    echo "usage: ./1 problem-id"
+    echo "usage: 1 problem-id"
     exit 1
 fi
 
