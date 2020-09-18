@@ -6,7 +6,7 @@
 * output
 * result : PASS / FAILED based on diff between your output and problem output
 
-All served within a sec. Just focus to write the solution.
+All served within a sec. All you have to do is just focus to write the solution.
 
 # installation
  - put this file inside your kattis work dir
