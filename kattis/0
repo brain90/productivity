@@ -2,12 +2,13 @@ import sys
 
 input = sys.stdin
 
+# simple reader
 for line in input:
     num = (line.strip()).split()
     num = map(int, num)
 
+# line by line with max range
 for line in input:
     max = int(line)
-    num = (line.strip()).split()
-    num = map(int, num)
-
+    for i in range(0, max):
+        line = (next(input).strip())
