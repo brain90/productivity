@@ -21,7 +21,7 @@ nnoremap <F5> :! cat in \| python %<cr>
 
 # Example
 
-```martian@mars:~/kattis% 1 babybites```
+```tree@earth:~/kattis% 1 babybites```
 
 1 will create babybites input and open vim with two tab (input file + solution template)
 
