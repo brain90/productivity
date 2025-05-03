@@ -1,3 +1,4 @@
+" NVIM v0.6.1
 " Brain90 .vimrc
 " Give me six hours to chop down a tree and 
 " I will spend the first four sharpening the axe.
@@ -72,7 +73,6 @@ set undolevels=1000                        " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                                  " change the terminal's title
 set hidden
-"set nobackup                               " drop nasty swaps    
 set noswapfile                                   
 set showmode                                    
 set gdefault                               " auto global flag in search/replace
@@ -90,17 +90,24 @@ filetype plugin indent on
 " MACRO "
 
 " PostgresEditView
-let @v=':2d/SELECT :1 yyp:1 idrop :2 icreate :1 vj:s/"// :1 vj:s/$/;/ :2 :s/;/ AS/g' 
+"let @v='vggyypgg3cwdrop$a�kb�kb;Ga;'
+"let @v='ggyypgg3cwdrop^[$a^[k$;^[Ga;^['
+
+" PostgresEditView
+let @v = ':2d^M/SELECT^M:1 yyp^M:1 idrop ^[:2 icreate ^[:1 vj:s/"//^M:1 vj:s/$/;/^M:2 :s/;/ AS/g^M'
+let @q="0i'<Esc>A'<Esc>j"
+
+"let @v=':2d/SELECT :1 yyp:1 idrop ␛:2 icreate ␛:1 vj:s/"// :1 vj:s/$/;/ :2 :s/;/ AS/g' 
 
 " Wilblokno
-let @w="0iwhere wil='f.i' and no='�kDlf.i' and blok='�kD$a';0i"
+let @w="0iwhere wil='␃␃f.i' and no='�kD␃␃lf.i' and blok='�kD␃␃$a';␃0i"
 
 " Powerfull array maker
-let @q="^i'$a',j"
+let @q="^i'␛$a',␛j"
 vnoremap <leader>q :'<,'> norm! @q<CR>
 
 " pre code
-let @p="{i<pre>}o</pre>"
+let @p="{i<pre>␃␃}o</pre>␃␃"
 
 " make ctrl + p run faster
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden                                   
@@ -149,17 +156,22 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-dadbod'
+Plugin 'kristijanhusak/vim-dadbod-ui'
+Plugin 'kristijanhusak/vim-dadbod-completion'
+Plugin 'Shougo/deoplete.nvim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'edsono/vim-matchit'
-Plugin 'vim-scripts/taglist.vim'
+"Plugin 'vim-scripts/taglist.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vitalk/vim-simple-todo'
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'krisajenkins/vim-postgresql-syntax'
 "Plugin 'chikamichi/mediawiki.vim'
 Plugin 'rking/ag.vim'
+Plugin 'mrpeterlee/VimWordpress'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 "Plugin 'swekaj/php-foldexpr.vim'
@@ -211,7 +223,7 @@ nnoremap <leader>s :mksession<CR>
 
 " BACKUP
 set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/.vim/backups
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
@@ -274,7 +286,7 @@ set shortmess=a
 "let phpfold_text_percent     = 1 "Display the percentage of lines the fold represents.
 
 "auto save
-let g:auto_save = 1  " enable AutoSave on Vim startup
+"let g:auto_save = 1  " enable AutoSave on Vim startup
 
 "freedom cursor movement set virtualedit=all %!fold -w 60
 
@@ -284,4 +296,30 @@ set shortmess=a
 nnoremap <leader>h :split<CR>
 nnoremap <leader>v :vsplit<CR>
 
-"set iskeyword-=_ 
+
+" comment
+" Remap Ctrl + / to toggle comments
+nnoremap <C-_> :call ToggleComment()<CR>
+vnoremap <C-_> :<C-U>call ToggleCommentVisual()<CR>
+
+function! ToggleComment()
+  if getline('.') =~ '^\s*//'
+    " Uncomment the line
+    s#^\(\s*\)// #\1#
+  else
+    " Comment the line
+    s#^\(\s*\)#\1// #
+  endif
+endfunction
+
+function! ToggleCommentVisual()
+  '<,'>s#^\(\s*\)\(// \)\?#\1// #
+endfunction
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+let g:db_ui_auto_execute_table_helpers = 0
+
+let g:db = 'postgresql://bsm:bsm!@localhost:5432/bsm'
+set completeopt-=preview
+
