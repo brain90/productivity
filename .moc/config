@@ -1,0 +1,8 @@
+StartInMusicDir = yes
+MusicDir = /home/brain/Music/koding
+Theme = green_theme
+PlaylistFullPaths = no
+Layout1 = playlist(0,0,100%,20):directory(0,10,100%,FILL)
+#Layout2 = directory(0,0,100%,100%):playlist(0,0,100%,100%)
+#Layout3 = directory(0,0,100%,100%):playlist(0,0,100%,100%)
+AutoLoadLyrics = yes
