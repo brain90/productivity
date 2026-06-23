@@ -1,4 +1,4 @@
-= query automation = 
+# query automation 
 dump semua ddl db, masukkan sebagai context
 tidak perlu lagi tulis manual sql. cukup bicara dgn bahasa natural:
 ```
